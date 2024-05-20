@@ -1,21 +1,33 @@
 class Bst{
-    public static void main(String[] args) {
-        run();
-    }
     static class Node{
         Node left;
         Node right;
-        static int  value;
+        int  value;
         @SuppressWarnings("static-access")
         public Node(int value){
             this.value= value;
         }
     }
+    static void inOrder(Node node){
+        if(node.left==null){
+            System.out.println("empty");
+        }
+           try{
+             inOrder(node.left);
+             System.out.print(node.value + " ");  
+             inOrder(node.right); 
+           }catch(Exception e){
+             System.out.println(node.right.value);
+             System.out.println(node.value);
+             System.err.println(node.left);
+           } 
+        }
     public  static void run(){
     Node t = new Node(20);
-    System.out.println("building node with root node "+ Node.value);
+    System.out.println("building node with root node "+ t.value);
     insert(t,50);
-    insert(t,300);
+    insert(t,30);
+    inOrder(t);
     }
     @SuppressWarnings("static-access")
     public static void insert(Node node,int value){
@@ -36,6 +48,10 @@ class Bst{
             node.right= new Node(value);
         }
      }
+
+    }
+    public static void main(String[] args) {
+        run();
     }
     }
     
