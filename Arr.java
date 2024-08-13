@@ -1,62 +1,29 @@
-class Node{
-	int data;
-	Node next;
-	Node(int data){
-		this.data = data;
-		this.next = null;
-	}
-}
-class Queue{
-	Node front;
-	Node rare;
-	Queue(){
-      this.front= null;
-	  this.rare = null;
-	}
-	void insert(int data){
-    Node newnode  = new Node(data);
-    if(this.front==null||this.rare==null){
-		this.front=this.rare=newnode;
-	}
-	else{
-		this.rare.next = newnode;
-		this.rare = newnode;
-		this.rare.next = this.front;
-	}
-	}
-	int remove(){
-		if(this.front==null||this.rare==null){
-			return 0;
-		}
-		else{
-		int data = this.front.data;
-         this.front  = this.front.next;
-		 this.rare.next = this.front;
-		 return data;
-		}	
-	}
-	void display(){
-		if(this.front==null||this.rare==null){
-			System.out.println("no element to print");
-		}else{
-           Node temp = this.front;
-		   while (temp.next!=this.front) {
-			System.out.println(temp.data);
-			temp = temp.next;
-		   }
-		   System.out.println(temp.data);
-		}
-	}
+import java.util.Arrays;
+class Solution {
+    public int[] productExceptSelf(int[] nums) {
+       int answer[]= new int[nums.length];
+       int product =1;
+       Arrays.fill(answer,1);
+       for(int i =0; i<nums.length; i++){
+           answer[i] = product*answer[i];
+           product = product*nums[i];
+       }
+       product =1;
+       for(int i=nums.length-1; i>=0; i--){
+            answer[i] = product*answer[i];
+            product = product*nums[i];
+       }
+       return answer;
+    }
 }
 public class Arr {
-	public static void main(String[] args) {
-		Queue q = new Queue();
-		q.insert(10);
-		q.insert(20);
-		q.insert(30);
-		q.insert(40);
-		q.insert(50);
-		q.remove();
-		q.display();
-	}
+
+    public static void main(String[] args) {
+        Solution s = new Solution();
+        int[] arr ={1,2,3,4};
+        int[] answer = s.productExceptSelf(arr);
+        for (int i = 0; i < answer.length; i++) {
+             System.out.println(answer[i]);
+        }
+    }
 }
