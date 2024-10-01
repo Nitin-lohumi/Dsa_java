@@ -11,7 +11,9 @@ public void display(){
       System.out.println(this.numbers.get(i));          
     }
 }
-
+public void delete(String data){
+    this.numbers.remove(data);
+}
 public static void main(String[] args) {
     ArrayList arr  = new ArrayList();
     arr.insert("nitin");
@@ -19,6 +21,7 @@ public static void main(String[] args) {
     arr.insert("nirmal ");
     arr.insert("mayank");
     arr.insert("puuja ");
+    arr.delete("nitin");
     arr.display();
  }   
 }
