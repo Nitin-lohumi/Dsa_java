@@ -48,7 +48,6 @@ class Bst{
             node.right= new Node(value);
         }
      }
-
     }
     public static void main(String[] args) {
         run();
