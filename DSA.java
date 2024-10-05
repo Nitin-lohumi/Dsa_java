@@ -1,29 +1,23 @@
-public class DSA {
-    int val;
-    DSA next;
-
-    DSA() {
-    }
-    DSA(int val) {
-        this.val = val;
-    }
-    DSA(int val, DSA next) {
-        this.val = val;
-        this.next = next;
-    }
-}
-class Solution{
-    public DSA removeNthFromEnd(DSA head, int n) {
-        DSA DummyNode =new DSA(0,head);
-        DSA result =DummyNode;
-        for (int i = 0; i<n; i++) {
-            head = head.next;
+class DSA {
+    public static int reverse(int x) {
+        int rev = 0;
+        
+        while (x != 0) {
+            int pop = x % 10;
+            x /= 10;
+            if (rev > Integer.MAX_VALUE / 10 || (rev == Integer.MAX_VALUE / 10 && pop > 7)) {
+                return 0; 
+            }
+            if (rev < Integer.MIN_VALUE / 10 || (rev == Integer.MIN_VALUE / 10 && pop < -8)) {
+                return 0;
+            }
+            rev = rev * 10 + pop;
         }
-        while(head!=null){
-            head = head.next;
-            DummyNode = DummyNode.next;
-        }
-        DummyNode.next= DummyNode.next.next;
-        return result.next;
+        
+        return rev;
+    }
+    public static void main(String[] args) {
+        // DSA s = new DSA();
+        System.out.println(reverse(1534236469));
     }
 }
