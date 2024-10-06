@@ -1,23 +1,18 @@
-class DSA {
-    public static int reverse(int x) {
-        int rev = 0;
-        
-        while (x != 0) {
-            int pop = x % 10;
-            x /= 10;
-            if (rev > Integer.MAX_VALUE / 10 || (rev == Integer.MAX_VALUE / 10 && pop > 7)) {
-                return 0; 
-            }
-            if (rev < Integer.MIN_VALUE / 10 || (rev == Integer.MIN_VALUE / 10 && pop < -8)) {
-                return 0;
-            }
-            rev = rev * 10 + pop;
-        }
-        
-        return rev;
-    }
-    public static void main(String[] args) {
-        // DSA s = new DSA();
-        System.out.println(reverse(1534236469));
+class Solution {
+    public int myAtoi(String s) {
+     long ans = 0;
+     int sign =1; int i =0;
+     while (i<s.length()&&s.charAt(i)==' ') i++;
+     if(i<s.length()&&(s.charAt(i)=='-'||s.charAt(i)=='+')){
+        sign = (s.charAt(i)=='-')?-1:1;
+        i++;
+     }
+     while(i<s.length()&& Character.isDigit(s.charAt(i))){
+        ans = ans *10+(s.charAt(i)-'0');
+        if(ans*sign<=Integer.MIN_VALUE) return Integer.MIN_VALUE;
+        if(ans*sign>= Integer.MAX_VALUE) return Integer.MAX_VALUE;
+        i++;
+     }
+     return (int) ans*sign;
     }
 }
