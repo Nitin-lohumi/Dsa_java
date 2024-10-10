@@ -93,5 +93,6 @@ public class Bt {
         System.out.println("after delete ");
         t.inorder(t.root);
         System.out.println("this is root "+t.root.data);
+
     }
 }
