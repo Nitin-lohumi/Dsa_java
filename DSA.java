@@ -1,16 +1,13 @@
-import java.util.ArrayList;
-import java.util.Collections;
+import java.util.*;
 public class Dsa{
     public static void main(String[] args) {
-        ArrayList<String> name = new ArrayList<String>();
-        name.add("nitin");
-        name.add("shubham");
-        name.add("nirmal");
-        name.add("puja");
-        name.add("mayank");
-        Collections.emptyList();
-        for (String string : name) {
-            System.out.println(string);
+        HashMap<Integer,String> map = new HashMap<>();
+        map.put(1, "Apple");
+        map.put(2, "Banana");
+        map.put(3, "Orange");
+        map.remove(2);
+        for (HashMap.Entry<Integer,String> entry:map.entrySet()) {
+            System.out.println("key:" +entry.getKey()+"  "+"value" +entry.getValue());
         }
     }
 }
