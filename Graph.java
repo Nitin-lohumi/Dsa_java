@@ -1,25 +1,32 @@
+import java.util.ArrayList;
+import java.util.List;
 public class Graph {
-    public static void addEdge(int[][] arr,int i,int j){
-        arr[i][j] = 1;
-        arr[j][i] =1;
+    public static void addEdge(List<List<Integer>> adj,int i,int j){
+        adj.get(i).add(j);
+        adj.get(j).add(i);
     }
 
-    public static void Display(int arr[][]){
-        for(int[] row:arr){
-            for(int val: row){
-                System.out.print(val +"  ");
+    public static void displayAdjList(List<List<Integer>> adj) {
+        for (int i = 0; i < adj.size(); i++) {
+            System.out.print(i + ": "); // Print the vertex
+            for (int j : adj.get(i)) {
+                System.out.print(j + " "); // Print its adjacent 
             }
-            System.out.println();
+            System.out.println(); 
         }
     }
     public static void main(String[] args) {
-        int vertix = 4;
-        int [][] mat = new int[vertix][vertix];
-        addEdge(mat, 0, 1);
-        addEdge(mat, 0, 2);
-        addEdge(mat, 1, 2);
-        addEdge(mat, 2, 3);
+        int V = 4;
+        List<List<Integer>> adj = new ArrayList<>(V); 
+        for (int i = 0; i < V; i++) {
+            adj.add(new ArrayList<>());
+        }
+        addEdge(adj, 0, 1);
+        addEdge(adj, 0, 2);
+        addEdge(adj, 1, 2);
+        addEdge(adj, 2, 3);
+
         System.out.println("printing the Graph ");
-        Display(mat);
+         displayAdjList(adj);
     }
 }
