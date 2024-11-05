@@ -7,9 +7,9 @@ public void insert(String data){
     this.numbers.add(data);
 }
 public void display(){
-    for (int i = 0; i < this.numbers.size(); i++) {
-      System.out.println(this.numbers.get(i));          
-    }
+   for(String str: numbers){
+    System.out.println(str);
+   }
 }
 public void delete(String data){
     this.numbers.remove(data);
