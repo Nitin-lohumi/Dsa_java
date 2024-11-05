@@ -1,3 +1,4 @@
+import java.util.Collections;
 public class ArrayList {
     java.util.ArrayList<String> numbers;
 ArrayList(){
@@ -14,14 +15,20 @@ public void display(){
 public void delete(String data){
     this.numbers.remove(data);
 }
+public void Sort(){
+     Collections.sort(this.numbers);
+}
 public static void main(String[] args) {
     ArrayList arr  = new ArrayList();
     arr.insert("nitin");
     arr.insert("shubham");
-    arr.insert("nirmal ");
+    arr.insert("nirmal");
     arr.insert("mayank");
     arr.insert("puuja ");
     arr.delete("nitin");
+    arr.display();
+    arr.Sort();
+    System.out.println("printing the sort list of arraylist");
     arr.display();
  }   
 }
