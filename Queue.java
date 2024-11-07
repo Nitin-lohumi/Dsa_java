@@ -1,41 +1,41 @@
 import java.util.Scanner;
+import java.util.ArrayList;
 public class Queue {
     public int front;
     public int rare;
     public int size;
-    int arr[];
-    Queue(int size){
+    private int mainSize;
+    public ArrayList<Integer> queue;
+    public Queue(int size){
+       this.queue=new ArrayList<>();
        this.size = size;
        front=-1;
        rare =-1;
-       arr = new int[size];
+       mainSize=-1;
     }
     public void insert(int data){
-        if(front==-1 && rare ==-1){
-            front++;
-            rare++;
-            arr[front]=arr[rare]=data;
+        if(mainSize==size){
+             System.out.println("fullll");
+             return;
         }
-        else{
-            rare ++;
-            arr[rare]= data;
-        }
+        rare = (rare+1)%this.size;
+        queue.add(rare, data);
+        mainSize++;
+        System.out.println("inserted");
     }
     public void delete(){
         if(rare==-1){
             System.out.println("there is no any queue to delete");
         }
         else{
-            if(front>rare){
-                System.out.println("queue is empty");
-            }
-            else{
-                System.out.println("this element is deleted" + arr[front]);
-                 front++;
-            }
+                System.out.println("this element is deleted");
+                front = (front+1)%this.size;
+                mainSize--;
+                System.out.println("deleted");
         }
     }
     public void print(){
+        int i = front;
         if(rare==-1){
             System.out.println("queue is underflow");
         }
@@ -44,14 +44,16 @@ public class Queue {
                  System.out.println("the queue is empty for displying the elements");
             }
             else{
-                for(int i=front; i<=rare; i++){
-                    System.out.println(arr[i]);
-                }
+               while(i<=mainSize){
+                System.out.print(queue.get(i));
+                i++;
+               }
             }
+            System.out.println();
         }
     }
     public static void main(String[] args) {
-        Queue q = new Queue(100);
+        Queue q = new Queue(10);
          Scanner s = new Scanner(System.in);
      int choice;
     do{
@@ -70,6 +72,6 @@ public class Queue {
            break;
       }
     }while(choice!=0);
-  s.close();
+      s.close();
     }
 }
