@@ -1,77 +1,56 @@
 import java.util.Scanner;
-import java.util.ArrayList;
-public class Queue {
-    public int front;
-    public int rare;
-    public int size;
-    private int mainSize;
-    public ArrayList<Integer> queue;
-    public Queue(int size){
-       this.queue=new ArrayList<>();
-       this.size = size;
-       front=-1;
-       rare =-1;
-       mainSize=-1;
+import java.util.LinkedList;
+public class Queue<T> {
+  LinkedList<T> list;
+  int maxSize;
+    Queue(int maxSize) {
+      list= new LinkedList<>();
+      this.maxSize = maxSize;
     }
-    public void insert(int data){
-        if(mainSize==size){
-             System.out.println("fullll");
-             return;
-        }
-        rare = (rare+1)%this.size;
-        queue.add(rare, data);
-        mainSize++;
-        System.out.println("inserted");
+
+  public void insert(T data) {
+   if(list.size()>=maxSize){
+    System.out.println("Queue is full. Dequeuing the oldest element to make space...");
+    list.poll();
+   }
+   list.offer(data);
+   System.out.println("inserted"  );
+  }
+
+  public void delete() {
+    if (list.isEmpty()) {
+      System.out.println("there are no any elements to delete ");
     }
-    public void delete(){
-        if(rare==-1){
-            System.out.println("there is no any queue to delete");
-        }
-        else{
-                System.out.println("this element is deleted");
-                front = (front+1)%this.size;
-                mainSize--;
-                System.out.println("deleted");
-        }
-    }
-    public void print(){
-        int i = front;
-        if(rare==-1){
-            System.out.println("queue is underflow");
-        }
-        else{
-            if(front>rare){
-                 System.out.println("the queue is empty for displying the elements");
-            }
-            else{
-               while(i<=mainSize){
-                System.out.print(queue.get(i));
-                i++;
-               }
-            }
-            System.out.println();
-        }
-    }
-    public static void main(String[] args) {
-        Queue q = new Queue(10);
-         Scanner s = new Scanner(System.in);
-     int choice;
-    do{
+   else{
+    T item =  list.poll();
+    System.out.println( " the deleted elements is "+ item);
+   }
+  }
+
+  public void print() {
+     System.out.println("Queue" + list);
+  }
+
+  public static void main(String[] args) {
+    Queue<Integer> q = new Queue<>(100);
+    Scanner s = new Scanner(System.in);
+    int choice;
+    do {
       System.out.println(" 1 - insert , 2 - delete , 3 - display");
       choice = s.nextInt();
       switch (choice) {
-       case 1:
+        case 1:
           int data = s.nextInt();
           q.insert(data);
           break;
-       case 2:
-           q.delete();
-           break;
-       case 3:
-           q.print();
-           break;
+        case 2:
+        q.delete();
+          break;
+        case 3:
+          q.print();
+          break;
       }
-    }while(choice!=0);
-      s.close();
-    }
+    } while (choice != 0);
+    s.close();
+  }
 }
