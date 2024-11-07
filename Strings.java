@@ -1,5 +1,3 @@
-import java.util.Arrays;
-
 public class Strings {
     public static void main(String[] args) {
         StringBuilder sb= new StringBuilder();
@@ -15,7 +13,7 @@ public class Strings {
         // String name1 = "lohumi";
         String[] join = name.split("i");
         String change = String.join("-",join);
-        System.out.println(join.getClass().getSimpleName());
+        System.out.println(join.getClass().getSimpleName());//type of the variable
         System.out.println(change.getClass().getSimpleName());
         System.out.println(change);
 
