@@ -1,69 +1,58 @@
-class Node{
-    int data;
-    Node prev;
-    Node next;
-    Node(int data){
-      this.prev =null;
-      this.data = data;
-      this.next = null;
-    }
-}
-class CircularLinkList{
-    Node head;
-    CircularLinkList(){
-      this.head=null;
-    }
-    public void insert(int data){
-     Node newnode = new Node(data);
-     if(this.head==null){
-        this.head = newnode;
-        newnode.next = newnode;
-        newnode.prev = newnode;
-     }
-     else{
-        Node temp = this.head;
-        while(temp.next!=this.head){
-            temp = temp.next;
-        }
-        temp.next = newnode ;
-        newnode.next= this.head;
-        newnode.prev = temp;
-     }
-     System.out.println("inserted");
-    }
-    public void remove(int data){
-       if(this.head==null){
-        System.out.println("null");
-       }
-     else{ Node temp = this.head;
-       while(temp.next!=this.head){
-          if(temp.data==data){
-           break;
-          }
-          temp = temp.next;
-       }
-       temp.prev.next = temp.next;
-       temp.next.prev = temp.prev;
-       temp =null;}
-    }
-    public void display(){
-        Node temp = this.head; 
-        while(temp.next!=this.head){
-            System.out.println(temp.data);
-            temp = temp.next;
-        }
-        System.out.println(temp.data);
-    }
-}
-public class LinkedList1 {
-    public static void main(String[] args) {
-        CircularLinkList cl = new CircularLinkList();
-        cl.insert(10);
-        cl.insert(20);
-        cl.insert(30);
-        cl.insert(40);
-        cl.remove(40);
-        cl.display();
-    }
+import java.util.LinkedList;
 
+public class LinkedList1<T>{
+   LinkedList <T> list;
+   int cap; 
+   LinkedList1(int cap){
+    this.list = new LinkedList<T>();
+    this.cap = cap;
+   }
+   public void insert( T data){
+    list.add(data);
+   }
+   public void insertFrist(T data){
+    list.addFirst(data);
+   }
+   public void insertlast(T data){
+    list.addLast(data);
+   }
+   public void insertspecific(int index,T data){
+    list.add(index, data);
+   }
+   public T deletespecfic(int index)
+   {
+   return  list.remove(index);
+   }
+   public T deleteFrist(){
+    return list.removeFirst();
+   }
+   public T deleteLast(){
+    return list.removeLast();
+
+   }
+   public void display(){
+    if(list.isEmpty()){
+        System.out.println("empty list..");
+        return;
+    }
+    for (T t : list) {
+       System.out.print(" "+ t +"->");   
+    }
+    System.out.print(" null");
+   }
+
+   public static void main(String[] args) {
+    LinkedList1<Integer> list = new LinkedList1<>(100);
+    list.insert(10);
+    list.insert(20);
+    list.insert(30);
+    list.insert(40);
+    list.insert(50);
+    list.insert(60);
+    list.deletespecfic(2);
+    list.insertspecific(3, 1000);
+    list.insertFrist(00);
+    list.insertlast(2000);
+    list.display();
+   }
 }

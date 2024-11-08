@@ -1,5 +1,5 @@
 import java.util.Scanner;
-import java.util.LinkedList;
+import java.util.*;
 public class Queue<T> {
   LinkedList<T> list;
   int maxSize;
