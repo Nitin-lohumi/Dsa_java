@@ -60,6 +60,43 @@ class Node {
             return findKey(node.right, key);
         }
     }
+    public Node deleteNode(Node node,int value){
+        if(root==null){
+            return null;
+        }
+        if(node==null){
+            return null;
+        }
+        if(node.value<value){
+          node.right =deleteNode(node.right, value);
+        }else if(node.value>value){
+            node.left = deleteNode(node.left, value);
+        }else{
+        //  case 1 :
+         if(node.left==null||node.right==null){
+            return  null;
+         }
+         // case 2:
+           if(node.left==null){
+            return node.left;
+           }
+           else if(node.right==null){
+            return node.right;
+           }
+           //case 3:
+           Node succesorNode = FindLeftleaf(node.right);
+           node.value = succesorNode.value;
+           node.right = deleteNode(node.right,succesorNode.value);
+        }
+        return node;
+    }
+
+    public Node FindLeftleaf(Node node){
+       if(node==null||node.left==null){
+        return node;
+       }
+       return FindLeftleaf(node.left);
+    }
   
     public static void main(String[] args) {
         Bst bst = new Bst();
@@ -72,7 +109,9 @@ class Node {
         bst.insertRec(bst.root,80);
         System.out.println(" Inorder traversal of the BST:");
         bst.inorderRec(bst.root);
-       System.out.println( " the key is found : "+ bst.findKey(bst.root, 100));
+        System.out.println( " the key is found : "+ bst.findKey(bst.root, 100));
+        bst.root = bst.deleteNode(bst.root,30);
+        bst.inorderRec(bst.root);
     }
   }
   
