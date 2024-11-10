@@ -90,7 +90,6 @@ class Node {
         }
         return node;
     }
-
     public Node FindLeftleaf(Node node){
        if(node==null||node.left==null){
         return node;
