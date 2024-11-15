@@ -37,6 +37,7 @@ public class Bst {
         }
     }
 
+    @SuppressWarnings("unused")
     private void inorderRec(Node root) {
         if (root == null) {
             return;
