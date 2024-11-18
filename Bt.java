@@ -148,14 +148,53 @@ public class Bt {
         }
     }
 
+     public Boolean IsBst(Node node){
+       if(node==null){
+        return true;
+       }
+       if(node.left!=null){
+        if(node.data<=node.left.data){
+            return false;
+        }
+        if(!IsBst(node.left)){
+             return false;
+        };
+       }
+
+       if(node.right!=null){
+           if(node.data>=node.right.data){
+               return false;
+            }
+            if(!IsBst(node.right)){
+                return false;
+            }
+      }
+       return true;
+     }
+
+
+     public Boolean IsBStTree(Node node,int mini,int maxx){
+      if(node==null){
+        return true;
+      }
+      if(node.data<=mini || node.data>=maxx){
+        return false;
+      }
+      return IsBStTree(node.left,mini,node.data) && IsBStTree(node.right, node.data, maxx);
+     }
     public static void main(String[] args) {
-        int[] node = { 1, 2, 3, -1, -1, -1, 3, -1, -1, 4 };
+        int[] node = { 2,1,-1,-1,7,-1,6,-1,9};
         Bt t = new Bt();
         Node root = t.buildTree(node);
+        int max= Integer.MAX_VALUE;
+        int min = Integer.MIN_VALUE;
         // System.out.println("counting the number of node is " + t.CountNode(root));
         // System.out.println("sum of all nodes are " + t.sumOfNOde(root));
         // System.out.println("the height of tree is " + t.FindHeight(root));
-        t.levelOrderSum(root,2);
-        // t.BfS_travasal(root);
+        t.inorder(root);
+        // t.levelOrderSum(root,2);
+        System.out.println(t.IsBst(root));
+        System.out.println(t.IsBStTree(root,min,max));
+        t.BfS_travasal(root);
     }
 }
