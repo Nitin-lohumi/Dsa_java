@@ -1,8 +1,10 @@
 public  class Heaptree {
     int [] heap;
     int size;
+    int sortlen;
     Heaptree(int []arr){
       this.size =arr.length;
+      sortlen = arr.length;
       heap =arr;
       buildHeap();
     }
@@ -26,7 +28,6 @@ public  class Heaptree {
         for (int i = 0; i < size; i++) {
             System.out.print(heap[i] + " ");
         }
-        System.out.println();
     }
 
     public void heapify(int index){
@@ -34,13 +35,12 @@ public  class Heaptree {
         int left = leftChild(index);
         int right = Rightchild(index);
 
-        if(left<size&& heap[left]>heap[parent]){
+        if(left<size&& heap[left]<heap[parent]){
             parent = left;
         }
-        if(right<size&&heap[right]>heap[parent]){
+        if(right<size&&heap[right]<heap[parent]){
             parent = right;
         }
-
         if(parent!=index){
             swap(index,parent);
             heapify(parent);
@@ -53,9 +53,37 @@ public  class Heaptree {
         }
     }
 
+    public void Delete(){
+        if(size<=0){
+            System.out.println("no element to be deleted");
+            return;
+        }
+        swap(0, size-1);
+        size--;
+        System.out.println("elements is deleted");
+        buildHeap();
+    }
+
+
+    public void heapsort(){
+        if(size==0){
+           for (int i = 0; i <sortlen; i++) {
+              System.out.print(" "+heap[i]);
+           }
+        }
+    }
     public static void main(String[] args) {
     int[] arr = {10, 20, 15, 30, 40, 50, 25};
     Heaptree ht = new Heaptree(arr);
     ht.printHeap();
- }
+    ht.Delete();
+    ht.Delete();
+    ht.Delete();
+    ht.Delete();
+    ht.Delete();
+    ht.Delete();
+    ht.Delete();
+    ht.printHeap();
+    ht.heapsort();
+}
 }
