@@ -2,6 +2,7 @@ public  class Heaptree {
     int [] heap;
     int size;
     int sortlen;
+    
     Heaptree(int []arr){
       this.size =arr.length;
       sortlen = arr.length;
@@ -17,13 +18,14 @@ public  class Heaptree {
     }
     public int Rightchild(int index){
         return 2*index+2;
-    }
+    } 
 
     public void swap(int i ,int j){
         int temp = heap[i];
         heap[i] = heap[j];
         heap[j] = temp;
     }
+
     public void printHeap() {
         for (int i = 0; i < size; i++) {
             System.out.print(heap[i] + " ");
@@ -46,7 +48,6 @@ public  class Heaptree {
             heapify(parent);
         }
     }
-
     public void buildHeap(){
         for (int i = size/2-1; i >=0; i--) {
             heapify(i);
@@ -75,14 +76,6 @@ public  class Heaptree {
     public static void main(String[] args) {
     int[] arr = {10, 20, 15, 30, 40, 50, 25};
     Heaptree ht = new Heaptree(arr);
-    ht.printHeap();
-    ht.Delete();
-    ht.Delete();
-    ht.Delete();
-    ht.Delete();
-    ht.Delete();
-    ht.Delete();
-    ht.Delete();
     ht.printHeap();
     ht.heapsort();
 }
