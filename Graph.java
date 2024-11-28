@@ -27,6 +27,6 @@ public class Graph {
         addEdge(adj, 2, 3);
 
         System.out.println("printing the Graph ");
-         displayAdjList(adj);
+        displayAdjList(adj);
     }
 }
