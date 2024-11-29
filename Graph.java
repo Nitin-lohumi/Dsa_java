@@ -1,32 +1,87 @@
+import java.util.*;
+import java.util.Queue;
 import java.util.ArrayList;
-import java.util.List;
+
 public class Graph {
-    public static void addEdge(List<List<Integer>> adj,int i,int j){
-        adj.get(i).add(j);
-        adj.get(j).add(i);
+    private Map<Integer, List<Integer>> adjList;
+    public Graph() {
+        adjList = new HashMap<>();
+    }
+    public void addVertex(int vertex) {
+        adjList.putIfAbsent(vertex, new LinkedList<>());
+    }
+    public void addEdges(int from, int to) {
+        adjList.putIfAbsent(to,new LinkedList<>());
+        adjList.putIfAbsent(from, new LinkedList<>());
+        adjList.get(from).add(to);
+        adjList.get(to).add(from);
+    }
+    public void printGraph() {
+        for (int vertex : adjList.keySet()) {
+            System.out.print(vertex + " -> ");
+            System.out.println(adjList.get(vertex));
+        }
     }
 
-    public static void displayAdjList(List<List<Integer>> adj) {
-        for (int i = 0; i < adj.size(); i++) {
-            System.out.print(i + ": "); // Print the vertex
-            for (int j : adj.get(i)) {
-                System.out.print(j + " "); // Print its adjacent 
+    public void DFS(int startPoint,Set<Integer> visited,Map<Integer,List<Integer>> graph,ArrayList<Integer> ans){
+      visited.add(startPoint);
+      ans.add(startPoint);
+      for (Integer vertex : graph.get(startPoint)) {
+        if(!visited.contains(vertex)){
+            DFS(vertex, visited, graph, ans);
+        }
+      }
+    }
+    public void BFS(int key,Set<Integer> visited,Map<Integer,List<Integer>> map,ArrayList<Integer> AnsList){
+        Queue<Integer> queue = new LinkedList<>();
+        queue.add(key);
+        visited.add(key);
+        while (!queue.isEmpty()) {
+            int retive = queue.poll();
+            AnsList.add(retive);
+            for (Integer element : map.get(retive)) {
+                if(!visited.contains(element)){
+                    visited.add(element);
+                    queue.add(element);
+                }
             }
-            System.out.println(); 
+        }
+    }
+    public void removeVertex(int vertex){
+        adjList.remove(vertex);
+        for (List<Integer> element :adjList.values()) {
+            element.remove(Integer.valueOf(vertex));
+        }
+    }
+    public void removeEdge(int from , int to){
+        List<Integer> element = adjList.get(from);
+        List<Integer> element1 = adjList.get(to);
+        if(element1!=null){
+            element1.remove(Integer.valueOf(from));
+        }
+        if(element!=null){
+            element.remove(Integer.valueOf(to));
         }
     }
     public static void main(String[] args) {
-        int V = 4;
-        List<List<Integer>> adj = new ArrayList<>(V); 
-        for (int i = 0; i < V; i++) {
-            adj.add(new ArrayList<>());
-        }
-        addEdge(adj, 0, 1);
-        addEdge(adj, 0, 2);
-        addEdge(adj, 1, 2);
-        addEdge(adj, 2, 3);
-
+        Graph gp = new Graph();
+        // ArrayList<Integer> answer =new ArrayList<>();
+        // Set<Integer> visit = new HashSet<>();
+        gp.addVertex(10);
+        gp.addVertex(3);
+        gp.addVertex(5);
+        gp.addVertex(7);
+        gp.addEdges(10, 3);
+        gp.addEdges(3, 5);
+        gp.addEdges(7, 10);
+        gp.addEdges(5, 7);
         System.out.println("printing the Graph ");
-        displayAdjList(adj);
+        gp.printGraph();
+        // gp.BFS(10,visit,gp.adjList,answer);
+        // gp.DFS(10,visit,gp.adjList,answer);
+        // gp.removeVertex(10);
+        gp.removeEdge(10,7);
+        System.out.println("after delete the vertex ");
+        gp.printGraph();
     }
 }
