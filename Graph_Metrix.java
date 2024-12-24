@@ -23,7 +23,6 @@ public class Graph_Metrix {
     }
     public static void main(String[] args) {
         Graph_Metrix gm = new Graph_Metrix(4);
-
         gm.addEdges(0,2);
         gm.addEdges(2,1);
         gm.addEdges(3,2);
