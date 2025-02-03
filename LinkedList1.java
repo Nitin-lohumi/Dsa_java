@@ -1,4 +1,5 @@
 import java.util.LinkedList;
+import java.util.List;
 
 public class LinkedList1<T>{
    LinkedList <T> list;
@@ -40,19 +41,21 @@ public class LinkedList1<T>{
     }
     System.out.print(" null");
    }
+    public void reorderList(List<Integer> head) {
+     
+    }
 
    public static void main(String[] args) {
     LinkedList1<Integer> list = new LinkedList1<>(100);
-    list.insert(10);
-    list.insert(20);
-    list.insert(30);
-    list.insert(40);
-    list.insert(50);
-    list.insert(60);
-    list.deletespecfic(2);
-    list.insertspecific(3, 1000);
-    list.insertFrist(00);
-    list.insertlast(2000);
+    list.insert(1);
+    list.insert(2);
+    list.insert(3);
+    list.insert(4);
+    list.insert(5);
+   //  list.deletespecfic(2);
+   //  list.insertspecific(3, 1000);
+   //  list.insertFrist(00);
+   //  list.insertlast(2000);
     list.display();
    }
 }

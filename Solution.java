@@ -1,34 +1,18 @@
-class Solution {
-    public String reverseVowels(String s) {
-        char[] arr = s.toCharArray();
-        int i = 0, j = arr.length - 1;
-        while (i < j) {
-            if (isVowel(arr[i]) && isVowel(arr[j])) {
-                char temp = arr[i];
-                arr[i] = arr[j];
-                arr[j] = temp;
-                i++;
-                j--;
-            } else {
-                if (!isVowel(arr[i])) {
-                    i++;
-                }
-                if (!isVowel(arr[j])) {
-                    j--;
-                }
-            }
-        }
-        return new String(arr);
-    }
+// import java.util.*;
 
-    public boolean isVowel(char c) {
-        return "AEIOUaeiou".indexOf(c) != -1; 
-    }
-
-    public static void main(String[] args) {
-        Solution s = new Solution();
-        System.out.println(s.reverseVowels("ia"));
-        System.out.println(s.reverseVowels("hello")); 
-        System.out.println(s.reverseVowels("IceCream"));
-    }
-}
+// class Solution {
+//     public List<Integer>reorderList(List<Integer> head) {
+//         if(head.
+//     }
+//     public static void main(String[] args) {
+//         Solution s = new Solution();
+//         List<Integer>list = new LinkedList<>();
+//         list.add(1);
+//         list.add(2);
+//         list.add(3);
+//         list.add(4);
+//         list.add(5);
+//         List<Integer> arr = s.reorderList(list);
+//         System.out.println(list);
+//     }
+// }
