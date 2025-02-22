@@ -1,18 +1,18 @@
-class Solution {
-    public boolean divisorGame(int n) {
-        boolean alice =false;
-        int x =0;
-        return game(n,alice,x);
-    }
+import java.util.HashMap;
+import java.util.HashSet;
 
-    private boolean game(int n, boolean alice,int x){
-       if(x>n||x<0){
-        return false;
-       }
-       return x>n?game(n, alice, x-1):game(n, alice, x+1);
+class Solution {
+  public int[] intersection(int[] nums1, int[] nums2) {
+    HashMap<Integer, Integer> map = new HashMap<>();
+    HashSet<Integer> array = new HashSet<>();
+    for (int number : nums1) {
+      map.put(number, number);
     }
-    public static void main(String[] args) {
-        Solution s = new Solution();
-        System.out.println(s.divisorGame(2));
+    for (int number : nums2) {
+      if (map.containsKey(number)) {
+        array.add(number);
+      }
     }
+    return array.stream().mapToInt(Integer::intValue).toArray();
+  }
 }
